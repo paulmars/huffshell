@@ -1,5 +1,5 @@
 class CommandWord
   def self.clean(word)
-    word.gsub(/(\-)+/, '').downcase
+    word.gsub(/(\-)+/, '') #.downcase
   end
 end
