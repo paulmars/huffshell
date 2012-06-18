@@ -8,5 +8,4 @@ class BinaryChecker
     out = `command -v #{@command} >/dev/null 2>&1`
     $?.to_s.scan("exit 0") != []
   end
-
 end

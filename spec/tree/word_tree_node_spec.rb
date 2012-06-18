@@ -1,0 +1,128 @@
+require 'spec_helper'
+
+describe WordTreeNode do
+  it "can be created as a root node" do
+    WordTreeNode.new.should be_root
+  end
+
+  it "can be created with a word" do
+    node = WordTreeNode.new("git")
+    node.should_not be_root
+    node.word.should == "git"
+  end
+
+  it "ugly words can be used and cleaned" do
+    node = WordTreeNode.new("-m")
+    node.word.should == "-m"
+    node.cleanword.should == "m"
+  end
+
+  it "can be a pile |" do
+    node = WordTreeNode.new("|")
+    node.word.should == "|"
+    node.cleanword.should == "|"
+  end
+
+  it "can be a ." do
+    node = WordTreeNode.new(".")
+    node.word.should == "."
+    node.cleanword.should == "."
+  end
+
+  context "with lines" do
+    before :each do
+      @node = WordTreeNode.new
+      @sl1 = ScriptLine.new("git status")
+      @sl2 = ScriptLine.new("git blame")
+      @sl3 = ScriptLine.new("ls")
+
+      @node.add(@sl1)
+      @node.add(@sl2)
+      @node.add(@sl3)
+    end
+
+    it "has two nodes" do
+      @node.words.sort.should == ["git", "ls"].sort
+    end
+
+    it "says it has 3 lines" do
+      @node.line_count.should == 3
+    end
+
+    it "is level 0 and children are level 2" do
+      @node.level.should == 0
+      @node.children["git"].level.should == 1
+    end
+
+    it "retains the parent node" do
+      @node.children["git"].parent.should == @node
+    end
+
+    it "can truncate to a minimum count" do
+      @node.truncate!(2)
+      @node.children["ls"].should be_nil
+      @node.words.should == ["git"]
+    end
+
+    context "with many children" do
+      before :each do
+        @node.add(ScriptLine.new("git add Readme"))
+        @node.add(ScriptLine.new("git add Rakefile"))
+        @node.add(ScriptLine.new("git add index"))
+      end
+
+      it "truncates chilren as well" do
+        @node.truncate!(3)
+        @node.children["git"].children["add"].should_not be_nil
+        @node.children["git"].children["add"].line_count.should == 3
+      end
+    end
+  end
+
+  context "when printing" do
+    before(:each) do
+      @node = WordTreeNode.new
+      @node.add(ScriptLine.new("git"))
+    end
+
+    it "shows the count" do
+      @node.to_print.should == "git 1: 'git' => g available!\n"
+    end
+
+    it "shows two lines" do
+      @node.add(ScriptLine.new("ls"))
+      @node.to_print.should == "git 1: 'git' => g available!\nls 1: 'ls' => l available!\n"
+    end
+
+    it "shows indentation" do
+      @node.add(ScriptLine.new("git commit -m 'test'"))
+      @node.add(ScriptLine.new("git commit -m 'bogart'"))
+      @node.children["git"].children["commit"].send(:to_print_string).should ==
+        "\tcommit 2: 'git commit' => gc available!\n"
+    end
+
+    it "shows full block" do
+doc = <<-DOC
+git 3: 'git' => g available!
+\tcommit 2: 'git commit' => gc available!
+\t\t-m 2: 'git commit -m' => gcm available!
+\t\t\t'test' 1: 'git commit -m 'test'' => gcmt available!
+\t\t\t'bogart' 1: 'git commit -m 'bogart'' => gcmb available!
+DOC
+
+      @node.add(ScriptLine.new("git commit -m 'test'"))
+      @node.add(ScriptLine.new("git commit -m 'bogart'"))
+      @node.to_print.should == doc
+    end
+  end
+
+  context "creating a list of commands" do
+    it "returns an array" do
+      @node = WordTreeNode.new
+
+      @node.add(ScriptLine.new("git commit"))
+      @node.children["git"].children["commit"].word_list.should == ["git", "commit"]
+    end
+  end
+
+end

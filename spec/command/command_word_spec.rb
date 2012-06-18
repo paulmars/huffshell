@@ -19,4 +19,10 @@ describe CommandWord do
     CommandWord.clean("|").should == "|"
     CommandWord.clean(".").should == "."
   end
+
+  it "suggests a letter for a word" do
+    CommandWord.suggested_letter("git").should == "g"
+    CommandWord.suggested_letter("ls").should == "l"
+    CommandWord.suggested_letter("LS").should == "l"
+  end
 end
