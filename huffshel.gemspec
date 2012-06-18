@@ -15,5 +15,4 @@ Gem::Specification.new do |s|
                            'test/**/*'].to_a
   s.homepage    = 'http://rubygems.org/gems/huffshel'
   s.executables << 'huffshel'
-  s.executables << 'huffshel_suggest'
 end
