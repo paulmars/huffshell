@@ -10,6 +10,11 @@ describe ScriptLine do
     sl.command.should == "puts"
   end
 
+  it "returns an array of words" do
+    sl = ScriptLine.new("puts 'hey'")
+    sl.words.should == ["puts", "'hey'"]
+  end
+
   context "validitity" do
     it "is false if empty" do
       ScriptLine.new("   ").should_not be_valid

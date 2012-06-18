@@ -1,14 +1,14 @@
 class ScriptLine
-  attr_accessor :line, :command_words, :original_words
+  attr_accessor :line, :words, :clean_words
 
   def initialize(l)
     @line = l.strip
-    @original_words = l.split(/[ \t]+/)
-    @command_words = @original_words.map{|w| w.gsub(/(\-)+/, '')}
+    @words = l.split(/[ \t]+/)
+    @clean_words = @words.map{|w| CommandWord.clean(w) }
   end
 
   def command
-    command_words.first
+    clean_words.first
   end
 
   def valid?

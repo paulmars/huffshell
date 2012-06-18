@@ -2,7 +2,7 @@
 
 require 'huffshel'
 
-tree = ScriptWordTree.new
+tree = WordTree.new
 history_filename = '~/.zsh_history'
 
 OhMyZshReader.new(history_filename).shell_commands.
