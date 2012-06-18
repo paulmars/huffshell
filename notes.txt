@@ -1,0 +1,63 @@
+~ wc -l ~/.zsh_history
+   11737 /Users/paul/.zsh_history
+
+11737 lines of history
+
+
+478 unique keywords in my history
+
+64 words which are used more than 10 times
+
+81 > 5 times
+64 > 10 times
+41 > 20 times
+29 > 30 times
+
+
+most common extra words
+
+git 5226
+cd 550
+rm 419
+rails 372
+mate 214
+touch 196
+curl 190
+cat 167
+# 156
+gem 147
+
+most commont words I use with git
+
+commit 3840
+co 326
+add 293
+td 104
+clone 75
+diff 65
+log 60
+rm 45
+reset 42
+branch 38
+
+most common commit messages
+
+ git 5238
+   commit 3841
+     -m 3832
+       "add 554
+       "remove 267
+         unused 17
+         extra 15
+         old 14
+       "can 164
+         see 17
+         login 13
+         delete 10
+       "fix 131
+       "change 113
+         to 20
+       "bump 110
+         to 12
+         version 10
+       "move 103
