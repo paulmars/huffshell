@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'huffshel'
+require 'pp'
 
 tree = WordTree.new
 history_filename = '~/.zsh_history'
@@ -9,4 +10,4 @@ OhMyZshReader.new(history_filename).shell_commands.
   each{ |l| tree.add(l) }
 
 tree.truncate!(10)
-tree.print!
+puts tree.to_print

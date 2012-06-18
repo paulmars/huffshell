@@ -25,4 +25,8 @@ describe CommandWord do
     CommandWord.suggested_letter("ls").should == "l"
     CommandWord.suggested_letter("LS").should == "l"
   end
+
+  it "returns nil if no character is valid" do
+    CommandWord.suggested_letter("|").should be_nil
+  end
 end
