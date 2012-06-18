@@ -5,7 +5,7 @@ require 'huffshel'
 tree = ScriptWordTree.new
 history_filename = '~/.zsh_history'
 
-OhZshReader.new(history_filename).command_lines.
+OhMyZshReader.new(history_filename).shell_commands.
   each{ |l| tree.add(l) }
 
 tree.truncate!(10)
