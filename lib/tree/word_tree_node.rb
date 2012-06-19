@@ -1,3 +1,5 @@
+require 'colorize'
+
 class WordTreeNode
   include Enumerable
 
@@ -60,7 +62,7 @@ class WordTreeNode
 
   def to_print
     return "" if root?
-    "#{("\t" * (level - 1))}#{word} #{line_count}:\n"
+    "#{("\t" * (level - 1))}" + "#{word}".green + " #{line_count}:\n"
   end
 
 end
