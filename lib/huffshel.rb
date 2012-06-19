@@ -1,6 +1,7 @@
 require 'readers/oh_my_zsh_reader'
 
 require 'command/command_word'
+require 'command/command_suggestor'
 require 'command/command_suggestion'
 
 require 'shell/alias_line'

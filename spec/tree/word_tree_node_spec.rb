@@ -85,34 +85,35 @@ describe WordTreeNode do
       @node.add(ScriptLine.new("git"))
     end
 
+    it "shows no lines, children show lines" do
+      @node.to_print.should == ""
+    end
+
     it "shows the count" do
-      @node.to_print.should == "git 1: 'git' => g available!\n"
+      @node.children["git"].to_print.should == "git 1:\n"
     end
 
     it "shows two lines" do
       @node.add(ScriptLine.new("ls"))
-      @node.to_print.should == "git 1: 'git' => g available!\nls 1: 'ls' => l available!\n"
+      @node.children["git"].to_print.should == "git 1:\n"
+      @node.children["ls"].to_print.should == "ls 1:\n"
     end
 
     it "shows indentation" do
       @node.add(ScriptLine.new("git commit -m 'test'"))
       @node.add(ScriptLine.new("git commit -m 'bogart'"))
-      @node.children["git"].children["commit"].send(:to_print_string).should ==
-        "\tcommit 2: 'git commit' => gc available!\n"
+      @node.children["git"].children["commit"].to_print.should ==
+        "\tcommit 2:\n"
     end
 
     it "shows full block" do
 doc = <<-DOC
-git 3: 'git' => g available!
-\tcommit 2: 'git commit' => gc available!
-\t\t-m 2: 'git commit -m' => gcm available!
-\t\t\t'test' 1: 'git commit -m 'test'' => gcmt available!
-\t\t\t'bogart' 1: 'git commit -m 'bogart'' => gcmb available!
+git 3:
 DOC
 
       @node.add(ScriptLine.new("git commit -m 'test'"))
       @node.add(ScriptLine.new("git commit -m 'bogart'"))
-      @node.to_print.should == doc
+      @node.children["git"].to_print.should == doc
     end
   end
 
