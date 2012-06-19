@@ -8,6 +8,7 @@ history_filename = '~/.zsh_history'
 
 OhMyZshReader.new(history_filename).
   shell_commands.
+  map{|l| ScriptLine.new(l) }.
   select{|l| l.valid? }.
   each{ |l| tree.add(l) }
 

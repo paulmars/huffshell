@@ -8,7 +8,7 @@ class WordTree
 
   def add(line)
     @line_count += 1
-    root.add(ScriptLine.new(line), 0)
+    root.add(line, 0)
   end
 
   def truncate!(minimum)
