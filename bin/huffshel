@@ -3,14 +3,12 @@
 require 'huffshel'
 require 'pp'
 
-tree = WordTree.new
+cs = CommandSuggestor.new
 history_filename = '~/.zsh_history'
 
 OhMyZshReader.new(history_filename).
   shell_commands.
-  map{|l| ScriptLine.new(l) }.
-  select{|l| l.valid? }.
-  each{ |l| tree.add(l) }
+  each{ |l| cs.add(l) }
 
-tree.truncate!(30)
-puts tree.to_print
+cs.wordtree.truncate!(30)
+puts cs.wordtree.to_print
