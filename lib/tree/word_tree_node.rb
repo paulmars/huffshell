@@ -23,12 +23,16 @@ class WordTreeNode
   end
 
   def each &block
-    children.each do |k, v|
+    children.values.sort.each do |v|
       block.call(v)
       v.each do |q|
         block.call(q)
       end
     end
+  end
+
+  def <=> b
+    b.line_count <=> line_count
   end
 
   def words
@@ -55,16 +59,8 @@ class WordTreeNode
   end
 
   def to_print
-    if root?
-      ""
-    else
-      "#{("\t" * (level - 1))}#{word} #{line_count}:\n"
-    end
+    return "" if root?
+    "#{("\t" * (level - 1))}#{word} #{line_count}:\n"
   end
 
-protected
-
-  def sorted_children
-    children.values.sort{|a,b| b.line_count <=> a.line_count }
-  end
 end
