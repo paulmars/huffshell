@@ -16,6 +16,9 @@ class CommandSuggestor
   end
 
   def to_print
-    wordtree.root.map {|n| n.to_print }
+    wordtree.root.map do |n|
+      cs = CommandSuggestion.new(n.word_list)
+      "#{n.to_print.chomp} #{cs.to_s}"
+    end
   end
 end

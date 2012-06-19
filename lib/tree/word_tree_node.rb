@@ -25,6 +25,9 @@ class WordTreeNode
   def each &block
     children.each do |k, v|
       block.call(v)
+      v.each do |q|
+        block.call(q)
+      end
     end
   end
 
@@ -41,10 +44,6 @@ class WordTreeNode
     children.each{|k, v| v.truncate!(minimum) }
   end
 
-  def to_print
-    to_print_string + children_string
-  end
-
   def word_list
     list = [self.word]
     node = self
@@ -55,23 +54,15 @@ class WordTreeNode
     list.reverse
   end
 
-protected
-
-  def command_suggestion
-    CommandSuggestion.new(word_list)
-  end
-
-  def to_print_string
+  def to_print
     if root?
       ""
     else
-      "#{("\t" * (level - 1))}#{word} #{line_count}: #{command_suggestion}\n"
+      "#{("\t" * (level - 1))}#{word} #{line_count}:\n"
     end
   end
 
-  def children_string
-    sorted_children.map{|n| "#{n.to_print}" }.join
-  end
+protected
 
   def sorted_children
     children.values.sort{|a,b| b.line_count <=> a.line_count }
