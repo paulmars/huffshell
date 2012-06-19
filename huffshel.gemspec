@@ -1,7 +1,7 @@
 require 'rake'
 
 Gem::Specification.new do |s|
-  s.name        = 'Huffshel'
+  s.name        = 'huffshel'
   s.version     = '0.0.1'
   s.date        = '2012-06-18'
   s.summary     = "Automatic shell alias recommondations based on usage!"

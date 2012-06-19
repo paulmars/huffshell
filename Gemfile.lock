@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    Huffshel (0.0.1)
+    huffshel (0.0.1)
 
 GEM
   remote: http://rubygems.org/
@@ -20,5 +20,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  Huffshel!
+  huffshel!
   rspec
