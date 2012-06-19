@@ -8,6 +8,14 @@ class CommandSuggestor
   def add(line)
     sl = ScriptLine.new(line)
     return unless sl.valid?
-    @wordtree.add(sl)
+    wordtree.add(sl)
+  end
+
+  def truncate!(minimum)
+    wordtree.root.truncate!(minimum)
+  end
+
+  def to_print
+    wordtree.root.map {|n| n.to_print }
   end
 end

@@ -10,5 +10,5 @@ OhMyZshReader.new(history_filename).
   shell_commands.
   each{ |l| cs.add(l) }
 
-cs.wordtree.truncate!(30)
-puts cs.wordtree.to_print
+cs.truncate!(30)
+puts cs.to_print
