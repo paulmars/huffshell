@@ -13,14 +13,6 @@ class WordTree
     root.add(line, 0)
   end
 
-  def words
-    root.command_words
-  end
-
-  def nodes
-    root.nodes
-  end
-
   def truncate!(minimum)
     root.truncate!(minimum)
   end
