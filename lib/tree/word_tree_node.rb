@@ -1,4 +1,6 @@
 class WordTreeNode
+  include Enumerable
+
   attr_accessor :word, :cleanword, :children, :line_count, :level, :parent
 
   def initialize(word = nil, level = 0, parent = nil)
@@ -18,6 +20,12 @@ class WordTreeNode
 
     @children[word] ||= WordTreeNode.new(word, level + 1, self)
     @children[word].add(line, level + 1)
+  end
+
+  def each &block
+    children.each do |k, v|
+      block.call(v)
+    end
   end
 
   def words
