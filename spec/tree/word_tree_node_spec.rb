@@ -29,6 +29,20 @@ describe WordTreeNode do
     node.cleanword.should == "."
   end
 
+  it "is comparable" do
+    node1 = WordTreeNode.new("git")
+    node1.add(ScriptLine.new("git blame"))
+
+    node2 = WordTreeNode.new("ls")
+    (node1 <=> node2).should == -1
+
+    node2.add(ScriptLine.new("ls -l"))
+    (node1 <=> node2).should == 0
+
+    node2.add(ScriptLine.new("ls -G"))
+    (node1 <=> node2).should == 1
+  end
+
   context "with lines" do
     before :each do
       @node = WordTreeNode.new
