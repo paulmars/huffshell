@@ -22,11 +22,19 @@ private
   end
 
   def abbreviation_available
-    !checker.exist? ? "available!" : ""
+    !exists? ? "available!" : "taken :("
   end
 
-  def checker
+  def exists?
+    binary_checker.exist? || alias_checker.exist?(abbreviation)
+  end
+
+  def binary_checker
     BinaryChecker.new(abbreviation)
+  end
+
+  def alias_checker
+    AliasChecker.new("~/.aliases.cache")
   end
 
 end
