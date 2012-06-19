@@ -6,7 +6,9 @@ require 'pp'
 tree = WordTree.new
 history_filename = '~/.zsh_history'
 
-OhMyZshReader.new(history_filename).shell_commands.
+OhMyZshReader.new(history_filename).
+  shell_commands.
+  select{|l| l.valid? }.
   each{ |l| tree.add(l) }
 
 tree.truncate!(30)

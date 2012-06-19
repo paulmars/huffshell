@@ -8,9 +8,7 @@ class WordTree
 
   def add(line)
     @line_count += 1
-    line = ScriptLine.new(line)
-    return unless line.valid?
-    root.add(line, 0)
+    root.add(ScriptLine.new(line), 0)
   end
 
   def truncate!(minimum)
