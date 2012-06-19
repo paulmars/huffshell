@@ -9,5 +9,5 @@ history_filename = '~/.zsh_history'
 OhMyZshReader.new(history_filename).shell_commands.
   each{ |l| tree.add(l) }
 
-tree.truncate!(10)
+tree.truncate!(30)
 puts tree.to_print
