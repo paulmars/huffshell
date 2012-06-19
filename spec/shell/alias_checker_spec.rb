@@ -16,6 +16,10 @@ ZSHHISTORY
     ac.aliases.count.should == 3
   end
 
+  it "doesn't fail if file is missing" do
+    AliasChecker.new("file not existant")
+  end
+
   it "can tell you if an alias exists" do
     ac = AliasChecker.new("~/.aliases.cache")
     ac.exist?("ls").should be_true
