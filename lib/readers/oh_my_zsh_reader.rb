@@ -5,13 +5,22 @@ class OhMyZshReader
 
   def initialize(file_name)
     @file_name = file_name
-    @file_contents = File.open(File.expand_path(file_name), 'r').read
+
+    file = File.open(File.expand_path(file_name), 'r')
+
+    @file_contents = ""
 
     if String.method_defined?(:encode)
-      @file_contents.encode!('UTF-8', 'UTF-8', :invalid => :replace)
+      @file_contents = file.read.encode!('UTF-8', 'UTF-8', :invalid => :replace)
     else
-      ic = Iconv.new('UTF-8', 'UTF-8//IGNORE')
-      @file_contents = ic.iconv(@file_contents)
+      ic = Iconv.new('UTF-8', 'UTF-8')
+      file.each do |l|
+        begin
+          @file_contents += ic.iconv(l)
+        rescue
+          puts "Encoding error: #{l}"
+        end
+      end
     end
   end
 
