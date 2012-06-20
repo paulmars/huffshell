@@ -1,5 +1,7 @@
-HuffShell is a gem for optimizing your ZSH aliases, programtically.
+HuffShell
 ====================
+
+HuffShell is a gem for optimizing your ZSH aliases, programtically.
 
 The gems looks at your history which can be automatically stored and generates aliases based on your usage. Your history is used to determine what you use the most and generate the shortest commands based on usage.
 
