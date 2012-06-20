@@ -13,7 +13,7 @@ cs = CommandSuggestor.new
 files = ['~/.zsh_history', '~/.zshhistory', '~/.zhistory']
 history_filename = files.map{|f| File.expand_path(f) }.select{|f| File.exist?(f) }.first
 
-puts "Huffshel"
+puts "Huffshell"
 puts "============="
 puts ["History found:", history_filename, File.size(history_filename).to_s].join(" ")
 
