@@ -5,6 +5,15 @@ class String
   def initial
     self[0,1]
   end
+
+  def green
+    self
+  end
+end
+
+begin
+  require 'colorize'
+rescue LoadError
 end
 
 require 'command/command_word'

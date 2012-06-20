@@ -1,5 +1,3 @@
-require 'colorize'
-
 class CommandSuggestion
   attr_accessor :wordlist
 
