@@ -1,5 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
+require 'simplecov'
+SimpleCov.start
 
 require 'huffshell' # and any other gems you need
 
