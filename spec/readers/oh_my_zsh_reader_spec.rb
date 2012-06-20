@@ -12,7 +12,11 @@ clean_history = <<-ZSHHISTORY
 : 1319231998:0;git status
 ZSHHISTORY
 
-      file = clean_history.split("\n")
+      if String.method_defined?(:encode)
+        file = stub(:read => clean_history)
+      else
+        file = clean_history.split("\n")
+      end
       File.stub!(:open).and_return(file)
     end
 
@@ -31,7 +35,11 @@ dirty_history = <<-ZSHHISTORY
 : 1319231998:0;git status
 ZSHHISTORY
 
-      file = dirty_history.split("\n")
+      if String.method_defined?(:encode)
+        file = stub(:read => dirty_history)
+      else
+        file = dirty_history.split("\n")
+      end
       File.stub!(:open).and_return(file)
     end
 
