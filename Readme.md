@@ -45,7 +45,7 @@ gem update huffshell
 De-duplication
 ---------------------
 
-Many people have some form of deduplication on their ZSH history. That is a gret feature but will prevent you from getting all of the benifits of alias generation. If you are curious and want to see a better picture of your shell usage, here is a zsh configuration which remove deduping and creates a more accurate picture.
+Many people have some form of de-duplication on their ZSH history. That is a great feature but will prevent you from getting all of the benefits of alias generation. If you are curious and want to see a better picture of your shell usage, here is a zsh configuration which remove de-duping and creates a more accurate picture.
 
 ```script
 ## Command history configuration
