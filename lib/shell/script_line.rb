@@ -1,3 +1,9 @@
+class String
+  def initial
+    self[0,1]
+  end
+end
+
 class ScriptLine
   attr_accessor :line, :words, :clean_words
 
@@ -18,7 +24,7 @@ class ScriptLine
 private
 
   def comment?
-    @line[0] == "#"
+    @line.initial == "#"
   end
 
   def empty?
