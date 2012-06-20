@@ -10,11 +10,11 @@ In order to do that, huffshell generates stats of your usage and gives them to y
 Features
 ---------------------
 
-# Alias suggestion based on history.
-# Examines your system for binaries and aliases and avoids reassigning them.
-# Huffman inspired symbol generation.
-# Handy gem packaging.
-# Works out of the box with oh-my-zsh.
+* Alias suggestion based on history.
+* Examines your system for binaries and aliases and avoids reassigning them.
+* Huffman inspired symbol generation.
+* Handy gem packaging.
+* Works out of the box with oh-my-zsh.
 
 Installation
 ---------------------
