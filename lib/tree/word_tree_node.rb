@@ -46,7 +46,13 @@ class WordTreeNode
   end
 
   def truncate!(minimum)
-    children.select!{|k, v| v.line_count >= minimum }
+    # Ruby 1.9.2
+    # children.select!{|k, v| v.line_count >= minimum }
+
+    ret = {}
+    children.each{|k, v| ret[k] = v if v.line_count >= minimum }
+    self.children = ret
+
     children.each{|k, v| v.truncate!(minimum) }
   end
 
@@ -66,7 +72,11 @@ class WordTreeNode
   end
 
   def minimum(min)
-    children.select{|k, v| v.line_count >= min }
+    # 1.9.2 compatibility
+    # children.select{|k, v| v.line_count >= min }
+    ret = {}
+    children.each{|k, v| ret[k] = v if v.line_count >= min }
+    ret
   end
 
 end
