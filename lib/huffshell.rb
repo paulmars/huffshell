@@ -1,5 +1,12 @@
 require 'readers/oh_my_zsh_reader'
 
+# ruby 1.8.6
+class String
+  def initial
+    self[0,1]
+  end
+end
+
 require 'command/command_word'
 require 'command/command_suggestor'
 require 'command/command_suggestion'

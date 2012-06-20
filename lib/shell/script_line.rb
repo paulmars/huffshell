@@ -1,9 +1,3 @@
-class String
-  def initial
-    self[0,1]
-  end
-end
-
 class ScriptLine
   attr_accessor :line, :words, :clean_words
 

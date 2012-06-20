@@ -1,9 +1,3 @@
-class String
-  def initial
-    self[0,1]
-  end
-end
-
 class CommandWord
   def self.clean(word)
     word.gsub(/(\-)+/, '') #.downcase
