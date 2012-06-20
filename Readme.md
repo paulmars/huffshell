@@ -30,14 +30,14 @@ cat ~/.zsh_history
 Here is how you install the gem.
 
 ```script
-# install it
+# install the gem
 gem install huffman
 
 # need to be able to access this from the gem
 alias > ~/.aliases.cache
 huffshell
 
-# cleanup
+# Optional cleanup
 alias > ~/.aliases.cache
 ```
 
