@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
                            'bin/*',
                            '[A-Z]*',
                            'test/**/*'].to_a
-  s.homepage    = 'http://rubygems.org/gems/huffshell'
+  s.homepage    = 'https://github.com/paulmars/huffshell'
   s.executables << 'huffshell'
   s.add_dependency "colorize"
 end
