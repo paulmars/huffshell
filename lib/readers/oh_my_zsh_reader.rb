@@ -21,7 +21,7 @@ class OhMyZshReader
       ic = Iconv.new('UTF-8', 'UTF-8')
       file.each do |l|
         begin
-          @file_contents += ic.iconv(l)
+          @file_contents += ic.iconv(l) + "\n"
         rescue
           puts "Encoding error: #{l}"
         end
@@ -35,15 +35,15 @@ class OhMyZshReader
 
 private
 
+  def raw_lines
+    file_contents.split("\n")
+  end
+
   def filtered_lines
-    raw_lines(file_contents).select{|l| valid_line?(l) }
+    raw_lines.select{|l| valid_line?(l) }
   end
 
   def valid_line?(line)
-    line[0] == ":"
-  end
-
-  def raw_lines(file_contents)
-    file_contents.split("\n")
+    line.initial == ":"
   end
 end

@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe OhMyZshReader do
+  before(:each) do
+    File.stub("exists?" => true)
+  end
+
   context "clean history" do
     before :each do
 clean_history = <<-ZSHHISTORY
@@ -8,7 +12,7 @@ clean_history = <<-ZSHHISTORY
 : 1319231998:0;git status
 ZSHHISTORY
 
-      file = stub(:read => clean_history)
+      file = clean_history.split("\n")
       File.stub!(:open).and_return(file)
     end
 
@@ -27,7 +31,7 @@ dirty_history = <<-ZSHHISTORY
 : 1319231998:0;git status
 ZSHHISTORY
 
-      file = stub(:read => dirty_history)
+      file = dirty_history.split("\n")
       File.stub!(:open).and_return(file)
     end
 
