@@ -11,9 +11,9 @@ class CommandSuggestion
 
   def to_s
     if exists?
-      "'#{command}' => #{abbreviation} #{abbreviation_available}"
+      "'#{command}' => #{abbreviation} taken :("
     else
-      "'#{command}' => " + "#{abbreviation}".green + " #{abbreviation_available}"
+      "'#{command}' => " + "#{abbreviation}".green
     end
   end
 
@@ -25,10 +25,6 @@ private
 
   def command
     wordlist.join(" ")
-  end
-
-  def abbreviation_available
-    "taken :(" if exists?
   end
 
   def exists?
