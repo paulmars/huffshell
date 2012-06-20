@@ -5,6 +5,11 @@ require 'colorize'
 
 cs = CommandSuggestor.new
 
+# TODOS
+# get largest history file
+# examine to see what format the file is in
+# let users tell me where their files is
+
 files = ['~/.zsh_history', '~/.zshhistory', '~/.zhistory']
 history_filename = files.map{|f| File.expand_path(f) }.select{|f| File.exist?(f) }.first
 
