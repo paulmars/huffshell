@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'huffshell'
-require 'pp'
+require 'colorize'
 
 cs = CommandSuggestor.new
 history_filename = '~/.zsh_history'
@@ -10,5 +10,24 @@ OhMyZshReader.new(history_filename).
   shell_commands.
   each{ |l| cs.add(l) }
 
+puts "Huffshel"
+puts "============="
+puts [cs.commands.size.to_s.green, "unique keywords"].join(" ")
+
+puts ""
+[250, 100, 50, 20, 10, 5, 2, 1].reverse.each do |count|
+  puts [cs.wordtree.root.minimum(count).keys.size.to_s.green, "commands appear > #{count} times"].join(" ")
+end
+
+puts ""
+puts "Most common commands:"
+
+cs.wordtree.root.minimum(10).sort{|a, b| a[1].line_count <=> b[1].line_count }.reverse[0,10].each do |word, node|
+  puts [node.word, node.line_count.to_s.green].join(" ")
+end
+
 cs.truncate!(30)
+
+puts ""
+puts "Command tree:"
 puts cs.to_print

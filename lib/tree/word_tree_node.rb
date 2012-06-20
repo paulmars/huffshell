@@ -65,4 +65,8 @@ class WordTreeNode
     "#{("\t" * (level - 1))}" + "#{word}".green + " #{line_count}:\n"
   end
 
+  def minimum(min)
+    children.select{|k, v| v.line_count >= min }
+  end
+
 end

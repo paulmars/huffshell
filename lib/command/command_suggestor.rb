@@ -15,6 +15,10 @@ class CommandSuggestor
     wordtree.root.truncate!(minimum)
   end
 
+  def commands
+    wordtree.root.children.keys
+  end
+
   def to_print
     wordtree.root.map do |n|
       cs = CommandSuggestion.new(n.word_list)
