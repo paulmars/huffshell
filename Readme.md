@@ -7,7 +7,7 @@ Huffshell looks at your shell history file and generates aliases based on your t
 
 For example, you use 'git' 500 times and you use 'ls -l' 100 times. You should add aliases that are 'g' and 'll'. It could save you hundreds of keystrokes.
 
-In order to do that, huffshell generates stats of your usage and gives them to you, as you might hope.
+Additionally, huffshell prints out stats on what your usage looks like if you are just interested.
 
 Features
 ---------------------
