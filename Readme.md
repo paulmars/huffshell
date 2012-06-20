@@ -31,7 +31,7 @@ Here is how you install the gem.
 
 ```script
 # install the gem
-gem install huffman
+gem install huffshell
 
 # need to be able to access this from the gem
 alias > ~/.aliases.cache
