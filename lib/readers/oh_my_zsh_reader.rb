@@ -6,7 +6,12 @@ class OhMyZshReader
   def initialize(file_name)
     @file_name = file_name
 
-    file = File.open(File.expand_path(file_name), 'r')
+    path = File.expand_path(file_name)
+    if File.exists?(path)
+      file = File.open(path, 'r')
+    else
+      raise "File does not exist." + path.inspect
+    end
 
     @file_contents = ""
 
