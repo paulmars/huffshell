@@ -1,3 +1,3 @@
-gem uninstall huffshel
+gem uninstall huffshell
 ./build.sh
-gem install huffshel-0.0.1.gem 
+gem install huffshell-0.0.1.gem

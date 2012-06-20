@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    huffshel (0.0.1)
+    huffshell (0.0.1)
 
 GEM
   remote: http://rubygems.org/
@@ -22,5 +22,5 @@ PLATFORMS
 
 DEPENDENCIES
   colorize
-  huffshel!
+  huffshell!
   rspec

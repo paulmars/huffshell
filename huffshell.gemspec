@@ -1,7 +1,7 @@
 require 'rake'
 
 Gem::Specification.new do |s|
-  s.name        = 'huffshel'
+  s.name        = 'huffshell'
   s.version     = '0.0.1'
   s.date        = '2012-06-18'
   s.summary     = "Automatic shell alias recommondations based on usage!"
@@ -13,6 +13,6 @@ Gem::Specification.new do |s|
                            'bin/*',
                            '[A-Z]*',
                            'test/**/*'].to_a
-  s.homepage    = 'http://rubygems.org/gems/huffshel'
-  s.executables << 'huffshel'
+  s.homepage    = 'http://rubygems.org/gems/huffshell'
+  s.executables << 'huffshell'
 end

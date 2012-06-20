@@ -1,1 +1,1 @@
-gem build huffshel.gemspec 
+gem build huffshell.gemspec
