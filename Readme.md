@@ -21,12 +21,6 @@ Features
 Installation
 ---------------------
 
-You need to have zsh_history stored at this location: '~/.zsh_history'. If this code outputs a lot of junk, you are probably setup.
-
-```script
-cat ~/.zsh_history
-```
-
 Here is how you install the gem.
 
 ```script
@@ -48,10 +42,10 @@ Update
 gem update huffshell
 ````
 
-Fixes
+De-duplication
 ---------------------
 
-Things don't look right? Change your zsh history to these settings to allow your history to save dups and store a lot of entries. You need dups so that we can figure out what to optimize out with aliases and the larger the history, the better the data will be.
+Many people have some form of deduplication on their ZSH history. That is a gret feature but will prevent you from getting all of the benifits of alias generation. If you are curious and want to see a better picture of your shell usage, here is a zsh configuration which remove deduping and creates a more accurate picture.
 
 ```script
 ## Command history configuration
