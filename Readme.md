@@ -41,6 +41,13 @@ huffshell
 alias > ~/.aliases.cache
 ```
 
+Update
+---------------------
+
+```script
+gem update huffshell
+````
+
 Fixes
 ---------------------
 
