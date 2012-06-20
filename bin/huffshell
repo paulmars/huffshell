@@ -4,13 +4,19 @@ require 'huffshell'
 require 'colorize'
 
 cs = CommandSuggestor.new
-history_filename = '~/.zsh_history'
+
+files = ['~/.zsh_history', '~/.zshhistory', '~/.zhistory']
+history_filename = files.map{|f| File.expand_path(f) }.select{|f| File.exist?(f) }.first
+
+puts "Huffshel"
+puts "============="
+puts ["History found:", history_filename, File.size(history_filename).to_s].join(" ")
 
 OhMyZshReader.new(history_filename).
   shell_commands.
   each{ |l| cs.add(l) }
 
-puts "Huffshel"
+puts ""
 puts "============="
 puts [cs.commands.size.to_s.green, "unique keywords"].join(" ")
 
