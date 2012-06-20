@@ -21,6 +21,14 @@ Features
 Installation
 ---------------------
 
+You need to have zsh_history stored at this location: '~/.zsh_history'. If this code outputs a lot of junk, you are probably setup.
+
+```script
+cat ~/.zsh_history
+```
+
+Here is how you install the gem.
+
 ```script
 # install it
 gem install huffman
