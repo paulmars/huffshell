@@ -1,3 +1,5 @@
+require 'colorize'
+
 class CommandSuggestion
   attr_accessor :wordlist
 
@@ -8,7 +10,11 @@ class CommandSuggestion
   end
 
   def to_s
-    "'#{command}' => #{abbreviation} #{abbreviation_available}"
+    if exists?
+      "'#{command}' => #{abbreviation} #{abbreviation_available}"
+    else
+      "'#{command}' => " + "#{abbreviation}".green + " #{abbreviation_available}"
+    end
   end
 
   def abbreviation
@@ -22,7 +28,7 @@ private
   end
 
   def abbreviation_available
-    !exists? ? "available!" : "taken :("
+    "taken :(" if exists?
   end
 
   def exists?

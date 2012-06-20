@@ -104,30 +104,26 @@ describe WordTreeNode do
     end
 
     it "shows the count" do
-      @node.children["git"].to_print.should == "git 1:\n"
+      @node.children["git"].to_print.should == "\e[0;32;49mgit\e[0m 1:\n"
     end
 
     it "shows two lines" do
       @node.add(ScriptLine.new("ls"))
-      @node.children["git"].to_print.should == "git 1:\n"
-      @node.children["ls"].to_print.should == "ls 1:\n"
+      @node.children["git"].to_print.should == "\e[0;32;49mgit\e[0m 1:\n"
+      @node.children["ls"].to_print.should == "\e[0;32;49mls\e[0m 1:\n"
     end
 
     it "shows indentation" do
       @node.add(ScriptLine.new("git commit -m 'test'"))
       @node.add(ScriptLine.new("git commit -m 'bogart'"))
       @node.children["git"].children["commit"].to_print.should ==
-        "\tcommit 2:\n"
+        "\t\e[0;32;49mcommit\e[0m 2:\n"
     end
 
     it "shows full block" do
-doc = <<-DOC
-git 3:
-DOC
-
       @node.add(ScriptLine.new("git commit -m 'test'"))
       @node.add(ScriptLine.new("git commit -m 'bogart'"))
-      @node.children["git"].to_print.should == doc
+      @node.children["git"].to_print.should == "\e[0;32;49mgit\e[0m 3:\n"
     end
   end
 
