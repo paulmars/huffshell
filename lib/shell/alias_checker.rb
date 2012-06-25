@@ -5,8 +5,6 @@ class AliasChecker
     @filename = filename
 
     if !File.exist?(File.expand_path(filename))
-      puts "No alias cache found."
-      puts "Better output will be generated if you run 'alias > ~/.aliases.cache'"
       return
     end
 
@@ -20,6 +18,6 @@ class AliasChecker
   end
 
   def exist?(alias_name)
-    !!@aliases[alias_name]
+    @aliases && !!@aliases[alias_name]
   end
 end
