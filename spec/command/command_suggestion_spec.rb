@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe CommandSuggestion do
+  before do
+    AliasChecker.stub(:new).and_return(nil)
+  end
+
   it "create with list of words" do
     cs = CommandSuggestion.new(["git", "commit", "-m"])
     cs.abbreviation.should == "gcm"

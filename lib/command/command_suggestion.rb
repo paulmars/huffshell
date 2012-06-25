@@ -26,7 +26,7 @@ private
   end
 
   def exists?
-    binary_checker.exist? || alias_checker.exist?(abbreviation)
+    binary_checker.exist? || (alias_checker && alias_checker.exist?(abbreviation))
   end
 
   def binary_checker
