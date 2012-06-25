@@ -7,20 +7,23 @@ ls='ls -G'
 logs='nocorrect logs'
 mkdir='nocorrect mkdir'
 ZSHHISTORY
-      file = stub(:read => alias_file)
-      File.stub!(:open).and_return(file)
+    file = stub(:read => alias_file)
+    File.stub!(:open).and_return(file)
   end
 
   it "is inialized with a filename" do
+    File.stub!(:exist?).and_return(true)
     ac = AliasChecker.new("~/.aliases.cache")
     ac.aliases.count.should == 3
   end
 
   it "doesn't fail if file is missing" do
+    File.stub!(:exist?).and_return(false)
     AliasChecker.new("file not existant")
   end
 
   it "can tell you if an alias exists" do
+    File.stub!(:exist?).and_return(true)
     ac = AliasChecker.new("~/.aliases.cache")
     ac.exist?("ls").should be_true
     ac.exist?("NOT AN ALIAS").should be_false
