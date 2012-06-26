@@ -18,10 +18,6 @@ history_files.each do |history_filename|
   puts ["History found:", history_filename, File.size(history_filename).to_s].join(" ")
 end
 
-def timeline_based_history_file?
-  false
-end
-
 history_files.each do |history_filename|
   if HistoryReader.timestamps?(history_filename)
     shell_commands = OhMyZshReader.new(history_filename).shell_commands
