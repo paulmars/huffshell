@@ -4,21 +4,35 @@ require 'huffshell'
 
 cs = CommandSuggestor.new
 
-# TODOS
-# get largest history file
-# examine to see what format the file is in
-# let users tell me where their files is
+# zshfiles = ['~/.zsh_history', '~/.zshhistory', '~/.zhistory']
+zshfiles = []
+bashfiles = ['~/.bashhistory', '~/.bash_history']
+shfiles = ['~/.shistory']
+hfiles = ['~/.history']
 
-files = ['~/.zsh_history', '~/.zshhistory', '~/.zhistory']
-history_filename = files.map{|f| File.expand_path(f) }.select{|f| File.exist?(f) }.first
+files = (zshfiles + bashfiles + shfiles + hfiles).flatten
+history_files = files.map{|f| File.expand_path(f) }.select{|f| File.exist?(f) }
 
 puts "Huffshell"
 puts "============="
-puts ["History found:", history_filename, File.size(history_filename).to_s].join(" ")
+history_files.each do |history_filename|
+  puts ["History found:", history_filename, File.size(history_filename).to_s].join(" ")
+end
 
-OhMyZshReader.new(history_filename).
-  shell_commands.
-  each{ |l| cs.add(l) }
+def oh_my_zsh_type?
+  false
+end
+
+history_files.each do |history_filename|
+  puts "Importing #{history_filename}"
+  if oh_my_zsh_type?
+    OhMyZshReader.new(history_filename).
+      shell_commands.
+      each{ |l| cs.add(l) }
+  else
+    File.new(history_filename, 'r').read.split("\n").each{ |l| cs.add(l) }
+  end
+end
 
 puts cs.wordtree.root.line_count
 
