@@ -117,7 +117,7 @@ describe WordTreeNode do
       @node.add(ScriptLine.new("git commit -m 'test'"))
       @node.add(ScriptLine.new("git commit -m 'bogart'"))
       @node.children["git"].children["commit"].to_print.should ==
-        "\t\e[0;32;49mcommit\e[0m 2:\n"
+        "  \e[0;32;49mcommit\e[0m 2:\n"
     end
 
     it "shows full block" do

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    huffshell (0.0.10)
+    huffshell (0.0.11)
       colorize
 
 GEM
