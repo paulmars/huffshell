@@ -40,7 +40,20 @@ class HistoryReader
     raw_lines
   end
 
+  def self.files
+    possible_files.select{|f| File.exist?(File.expand_path(f)) }
+  end
+
 private
+
+  def self.possible_files
+    zshfiles = ['~/.zsh_history', '~/.zshhistory', '~/.zhistory']
+    bashfiles = ['~/.bashhistory', '~/.bash_history']
+    shfiles = ['~/.shistory']
+    hfiles = ['~/.history']
+
+    files = (zshfiles + bashfiles + shfiles + hfiles).flatten
+  end
 
   def raw_lines
     file_contents.split("\n")

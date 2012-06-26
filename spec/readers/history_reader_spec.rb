@@ -51,4 +51,10 @@ TIMEHISTORY
     HistoryReader.new(@clean_filename).shell_commands.size.should == 2
     HistoryReader.new(@clean_filename).shell_commands.first.should == "ls -l"
   end
+
+  it "returns an array of files" do
+    File.stub!(:exist).and_return(true)
+    HistoryReader.files.should be_instance_of(Array)
+    HistoryReader.files.should_not be_empty
+  end
 end
