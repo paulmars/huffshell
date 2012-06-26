@@ -1,9 +1,9 @@
 Huffshell
 ====================
 
-Huffshell is a gem for optimizing your aliases, programmatically.
+Huffshell is a gem for suggesting new aliases, programmatically.
 
-Huffshell looks at your shell history and generates aliases based on your typical usage. Memorable and short commands are suggested for the most common things you type to save you the most keystrokes.
+Huffshell looks at your shell history and suggests aliases based on your typical usage. Memorable and short commands are suggested for the most common things you type to save you the most keystrokes.
 
 For example, if you type 'git' 500 times and 'ls -l' 100 times, good aliases might be 'g' and 'll'. It could save you hundreds of keystrokes.
 
