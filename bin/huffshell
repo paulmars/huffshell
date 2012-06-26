@@ -4,8 +4,7 @@ require 'huffshell'
 
 cs = CommandSuggestor.new
 
-# zshfiles = ['~/.zsh_history', '~/.zshhistory', '~/.zhistory']
-zshfiles = []
+zshfiles = ['~/.zsh_history', '~/.zshhistory', '~/.zhistory']
 bashfiles = ['~/.bashhistory', '~/.bash_history']
 shfiles = ['~/.shistory']
 hfiles = ['~/.history']
@@ -19,19 +18,18 @@ history_files.each do |history_filename|
   puts ["History found:", history_filename, File.size(history_filename).to_s].join(" ")
 end
 
-def oh_my_zsh_type?
+def timeline_based_history_file?
   false
 end
 
 history_files.each do |history_filename|
-  puts "Importing #{history_filename}"
-  if oh_my_zsh_type?
-    OhMyZshReader.new(history_filename).
-      shell_commands.
-      each{ |l| cs.add(l) }
+  if HistoryReader.timestamps?(history_filename)
+    shell_commands = OhMyZshReader.new(history_filename).shell_commands
   else
-    File.new(history_filename, 'r').read.split("\n").each{ |l| cs.add(l) }
+    shell_commands = File.new(history_filename, 'r').read.split("\n")
   end
+  puts "Importing #{history_filename} #{shell_commands.size} commands found"
+  shell_commands.each{ |l| cs.add(l) }
 end
 
 puts cs.wordtree.root.line_count

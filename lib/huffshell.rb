@@ -1,5 +1,3 @@
-require 'readers/oh_my_zsh_reader'
-
 # ruby 1.8.6
 class String
   def initial
@@ -15,6 +13,9 @@ begin
   require 'colorize'
 rescue LoadError
 end
+
+require 'readers/oh_my_zsh_reader'
+require 'readers/history_reader'
 
 require 'command/command_word'
 require 'command/command_suggestor'
