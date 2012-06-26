@@ -26,7 +26,7 @@ history_files.each do |history_filename|
   if HistoryReader.timestamps?(history_filename)
     shell_commands = OhMyZshReader.new(history_filename).shell_commands
   else
-    shell_commands = File.new(history_filename, 'r').read.split("\n")
+    shell_commands = HistoryReader.timestamps?(history_filename).shell_commands
   end
   puts "Importing #{history_filename} #{shell_commands.size} commands found"
   shell_commands.each{ |l| cs.add(l) }

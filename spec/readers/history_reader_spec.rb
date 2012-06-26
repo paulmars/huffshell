@@ -1,6 +1,16 @@
 require 'spec_helper'
 
 describe HistoryReader do
+  before(:each) do
+    @clean_filename = "clean history"
+    @clean_history = <<-CLEANHISTORY
+ls -l
+git status
+CLEANHISTORY
+
+    File.stub(:exist?).and_return(true)
+  end
+
   it "returns true for timestamp (oh my zsh) files" do
     @time_filename = "time history"
     @time_history = <<-TIMEHISTORY
@@ -8,7 +18,6 @@ describe HistoryReader do
 : 1319231998:0;git status
 TIMEHISTORY
 
-    File.stub(:exist?).and_return(true)
 
     if String.method_defined?(:encode)
       file = stub(:read => @time_history)
@@ -21,14 +30,6 @@ TIMEHISTORY
   end
 
   it "returns false for bash files" do
-    @clean_filename = "clean history"
-    @clean_history = <<-CLEANHISTORY
-ls -l
-git status
-CLEANHISTORY
-
-    File.stub(:exist?).and_return(true)
-
     if String.method_defined?(:encode)
       file = stub(:read => @clean_history)
     else
@@ -37,5 +38,17 @@ CLEANHISTORY
     File.stub!(:open).with(File.expand_path(@clean_filename), 'r').and_return(file)
 
     HistoryReader.timestamps?(@clean_filename).should be_false
+  end
+
+  it "returns shell_commands" do
+    if String.method_defined?(:encode)
+      file = stub(:read => @clean_history)
+    else
+      file = @clean_history.split("\n")
+    end
+    File.stub!(:open).with(File.expand_path(@clean_filename), 'r').and_return(file)
+
+    HistoryReader.new(@clean_filename).shell_commands.size.should == 2
+    HistoryReader.new(@clean_filename).shell_commands.first.should == "ls -l"
   end
 end

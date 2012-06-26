@@ -36,6 +36,10 @@ class HistoryReader
     reader.timestamps?
   end
 
+  def shell_commands
+    raw_lines
+  end
+
 private
 
   def raw_lines
