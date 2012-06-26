@@ -8,9 +8,6 @@ puts "Huffshell"
 puts "============="
 
 history_files = HistoryReader.files
-history_files.each do |history_filename|
-  puts ["History found:", history_filename, File.size(history_filename).to_s].join(" ")
-end
 
 history_files.each do |history_filename|
   if HistoryReader.timestamps?(history_filename)
