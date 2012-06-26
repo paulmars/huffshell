@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe OhMyZshReader do
   before(:each) do
-    File.stub("exists?" => true)
+    File.stub(:exist?).and_return(true)
   end
 
   context "clean history" do
