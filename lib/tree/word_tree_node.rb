@@ -66,7 +66,7 @@ class WordTreeNode
 
   def to_print
     return "" if root?
-    "#{("\t" * (level - 1))}" + "#{word}".green + " #{line_count}:\n"
+    "#{("  " * (level - 1))}" + "#{word}".green + " #{line_count}:\n"
   end
 
   def minimum(min)
