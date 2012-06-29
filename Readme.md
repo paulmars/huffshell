@@ -26,8 +26,8 @@ Installation
 Here is how you install the gem.
 
 ```script
-# install the gem
-gem install huffshell
+# install the gem (sudo is optional)
+sudo gem install huffshell
 
 # need to be able to access this from the gem
 alias > ~/.aliases.cache
