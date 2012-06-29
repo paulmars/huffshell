@@ -66,3 +66,12 @@ setopt hist_verify
 setopt inc_append_history
 # setopt share_history # share command history data
 ```
+
+Can't I just do this in the shell?
+---------------------
+
+Sort of, but not very well:
+
+```script
+history 1 | awk '{print $2}' | awk 'BEGIN {FS="|"}{print $1}' | sort | uniq -c | sort -n | tail | sort -nr 
+```
