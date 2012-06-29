@@ -31,6 +31,8 @@ sudo gem install huffshell
 
 # need to be able to access this from the gem
 alias > ~/.aliases.cache
+
+# open up a new terminal to access new gem supplied binaries
 huffshell
 
 # Optional cleanup
