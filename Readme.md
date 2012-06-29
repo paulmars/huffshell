@@ -46,8 +46,10 @@ Update
 gem update huffshell
 ````
 
-De-duplication
+Questions
 ---------------------
+
+###De-duplication?
 
 Many people have some form of de-duplication on their ZSH history. That is a great feature but will prevent you from getting all of the benefits of alias generation. If you are curious and want to see a better picture of your shell usage, here is a zsh configuration which remove de-duping and creates a more accurate picture.
 
@@ -67,8 +69,7 @@ setopt inc_append_history
 # setopt share_history # share command history data
 ```
 
-Can't I just do this in the shell?
----------------------
+### Can't I just do this in the shell?
 
 Sort of, but not very well:
 
