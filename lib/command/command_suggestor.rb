@@ -19,10 +19,10 @@ class CommandSuggestor
     wordtree.root.children.keys
   end
 
-  def to_print
+  def to_tree
     wordtree.root.map do |n|
       cs = CommandSuggestion.new(n.word_list)
-      "#{n.to_print.chomp} #{cs.to_s}"
+      "#{n.to_tree.chomp} #{cs.to_s}"
     end
   end
 end

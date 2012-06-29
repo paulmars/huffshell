@@ -41,4 +41,4 @@ cs.truncate!(30)
 
 puts ""
 puts "Command tree:"
-puts cs.to_print
+puts cs.to_tree

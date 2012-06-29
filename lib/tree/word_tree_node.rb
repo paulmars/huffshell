@@ -64,7 +64,7 @@ class WordTreeNode
     list.reverse
   end
 
-  def to_print
+  def to_tree
     return "" if root?
     "#{("  " * (level - 1))}" + "#{word}".green + " #{line_count}:\n"
   end

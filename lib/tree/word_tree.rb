@@ -15,7 +15,7 @@ class WordTree
     root.truncate!(minimum)
   end
 
-  def to_print
-    root.to_print
+  def to_tree
+    root.to_tree
   end
 end
