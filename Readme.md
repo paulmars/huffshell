@@ -74,5 +74,5 @@ setopt inc_append_history
 Sort of, but not very well:
 
 ```script
-history 1 | awk '{print $2}' | awk 'BEGIN {FS="|"}{print $1}' | sort | uniq -c | sort -n | tail | sort -nr 
+history | awk '{print $2}' | awk 'BEGIN {FS="|"}{print $1}' | sort | uniq -c | sort -n | tail | sort -nr 
 ```
