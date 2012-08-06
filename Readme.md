@@ -36,7 +36,7 @@ alias > ~/.aliases.cache
 huffshell
 
 # Optional cleanup
-alias > ~/.aliases.cache
+rm ~/.aliases.cache
 ```
 
 Update
