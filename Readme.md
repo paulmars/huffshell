@@ -74,6 +74,16 @@ setopt inc_append_history
 
 Sort of, but not very well:
 
+ZSH:
 ```script
 history 1 | awk '{print $2}' | awk 'BEGIN {FS="|"}{print $1}' | sort | uniq -c | sort -n | tail | sort -nr 
 ```
+
+Depending on your environment, you may want to change "history 1" to "history" in the previous command. "history 1" returns the complete history on my system 
+(since line 1) but returns only 1 line of history in bash (relative).
+
+BASH:
+```script
+history | awk '{print $2}' | awk 'BEGIN {FS="|"}{print $1}' | sort | uniq -c | sort -n | tail | sort -nr 
+```
+
