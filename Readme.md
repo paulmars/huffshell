@@ -3,7 +3,7 @@ Huffshell
 
 Huffshell is a gem for suggesting new aliases, programmatically.
 
-Huffshell looks at your shell history and suggests aliases based on your typical usage. Memorable and short commands are suggested for the most common things you type to save you the most keystrokes.
+Huffshell looks at your shell history (bash/zsh/generic) and suggests aliases based on your typical usage. Memorable and short commands are suggested for the most common things you type to save you the most keystrokes.
 
 For example, if you type 'git' 500 times and 'ls -l' 100 times, good aliases might be 'g' and 'll'. It could save you hundreds of keystrokes.
 
@@ -18,7 +18,8 @@ Features
 * Examines your system for binaries and aliases and avoids reassigning them.
 * Huffman inspired symbol generation.
 * Handy gem packaging.
-* Works out of the box with oh-my-zsh.
+* Works with Bash history & Zsh history
+* Works out of the box with oh-my-zsh (datetime history).
 
 Installation
 ---------------------
