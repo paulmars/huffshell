@@ -10,7 +10,7 @@ class AliasLine
   end
 
   def valid?
-    @line.scan("!") != []
+    @line.scan("=") != []
   end
 
   def command
