@@ -9,8 +9,12 @@ class AliasLine
     @line.split("=").first
   end
 
+  def valid?
+    @line.scan("!") != []
+  end
+
   def command
     c = @line.split("=")[1]
-    c[1..(c.size-2)]
+    c[1..(c.size-2)] if c
   end
 end

@@ -13,6 +13,7 @@ class AliasChecker
     @aliases = {}
     lines.each do |l|
       al = AliasLine.new(l)
+      next unless al.valid?
       @aliases[al.alias_name] = al.command
     end
   end
