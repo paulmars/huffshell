@@ -41,7 +41,7 @@ class HistoryReader
   end
 
   def self.files
-    possible_files.map{|f| File.expand_path(f) }.select{|f| File.exist?(f) }
+    possible_files.map{|f| File.expand_path(f) }.select{|f| File.exist?(f) }.select{|f| File.readable?(f) }
   end
 
 private
