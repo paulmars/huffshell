@@ -10,13 +10,17 @@ puts "============="
 history_files = HistoryReader.files
 
 history_files.each do |history_filename|
-  if HistoryReader.timestamps?(history_filename)
-    shell_commands = OhMyZshReader.new(history_filename).shell_commands
-  else
-    shell_commands = HistoryReader.new(history_filename).shell_commands
+  begin
+    if HistoryReader.timestamps?(history_filename)
+      shell_commands = OhMyZshReader.new(history_filename).shell_commands
+    else
+      shell_commands = HistoryReader.new(history_filename).shell_commands
+    end
+    puts "Importing #{history_filename} #{shell_commands.size} commands found"
+    shell_commands.each{ |l| cs.add(l) }
+  rescue
+    puts "#{history_filename} is unreadable."
   end
-  puts "Importing #{history_filename} #{shell_commands.size} commands found"
-  shell_commands.each{ |l| cs.add(l) }
 end
 
 puts cs.wordtree.root.line_count
