@@ -2,8 +2,8 @@ require 'rake'
 
 Gem::Specification.new do |s|
   s.name        = 'huffshell'
-  s.version     = '0.0.13'
-  s.date        = '2012-08-20'
+  s.version     = '0.0.14'
+  s.date        = '2012-11-08'
   s.summary     = "Automatic shell alias recommondations based on usage!"
   s.description = "A parser and recommendation system for your shell aliases based on your shell history"
   s.authors     = ["Paul McKellar"]
