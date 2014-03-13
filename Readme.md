@@ -34,6 +34,7 @@ sudo gem install huffshell
 alias > ~/.aliases.cache
 
 # open up a new terminal to access new gem supplied binaries
+# or possible run "rbenv hash" if you use rbenv
 huffshell
 
 # Optional cleanup
