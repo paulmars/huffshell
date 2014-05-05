@@ -56,7 +56,7 @@ private
   end
 
   def raw_lines
-    file_contents.split("\n")
+    file_contents.force_encoding('BINARY').split("\n")
   end
 
   def starts_with_timestamp?(line)
