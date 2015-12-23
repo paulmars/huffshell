@@ -2,23 +2,37 @@ class AliasChecker
   attr_accessor :filename, :aliases
 
   def initialize(filename)
-    @filename = filename
-
-    if !File.exist?(File.expand_path(filename))
-      return
-    end
-
-    file_contents = File.open(File.expand_path(filename), 'r').read
-    lines = file_contents.split("\n")
+    @filename = File.expand_path(filename)
     @aliases = {}
-    lines.each do |l|
-      al = AliasLine.new(l)
-      next unless al.valid?
-      @aliases[al.alias_name] = al.command
+
+    if File.exist?(@filename)
+      load_aliases File.read(@filename)
+    else
+      case ENV["SHELL"]
+      when /bash/
+        load_aliases `bash --login -i -c alias`
+      when /zsh/
+        load_aliases `zsh --login -i -c alias`
+      end
     end
   end
 
   def exist?(alias_name)
-    @aliases && !!@aliases[alias_name]
+    @aliases.has_key? alias_name
+  end
+
+  def get(alias_name)
+    @aliases[alias_name]
+  end
+
+  private
+
+  def load_aliases(content)
+    content.lines.each do |l|
+      al, command = l.chomp.split("=", 2)
+      next if command.nil?
+      command = command[1..-2] if command.start_with? "'"
+      @aliases[al.sub(/^alias /, "")] = command
+    end
   end
 end

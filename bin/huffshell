@@ -25,24 +25,21 @@ end
 
 puts cs.wordtree.root.line_count
 
-puts ""
-puts "============="
-puts [cs.commands.size.to_s.green, "unique keywords"].join(" ")
+puts "\n============="
+puts "#{cs.commands.size.to_s.green} unique keywords"
 
-puts ""
-[250, 100, 50, 20, 10, 5, 2, 1].reverse.each do |count|
-  puts [cs.wordtree.root.minimum(count).keys.size.to_s.green, "commands appear > #{count} times"].join(" ")
+puts
+[1, 2, 5, 10, 20, 50, 100, 250].each do |count|
+  puts "#{cs.wordtree.root.minimum(count).size.to_s.green} commands appear > #{count} times"
 end
 
-puts ""
-puts "Most common commands:"
+puts "\nMost common commands:"
 
-cs.wordtree.root.minimum(10).sort{|a, b| a[1].line_count <=> b[1].line_count }.reverse[0,10].each do |word, node|
-  puts [node.word, node.line_count.to_s.green].join(" ")
+cs.wordtree.root.minimum(10).sort_by {|e| e[1].line_count }.reverse[0,10].each do |word, node|
+  puts "#{node.word} #{node.line_count.to_s.green}"
 end
 
 cs.truncate!(30)
 
-puts ""
-puts "Command tree:"
+puts "\nCommand tree:"
 puts cs.to_tree

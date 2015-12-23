@@ -4,7 +4,7 @@ class CommandWord
   end
 
   def self.suggested_letter(word)
-    char = word.gsub(/(^\W)+/,"")[0,1].downcase
+    char = word.gsub(/^\W+/,"")[0,1].downcase
     return nil if char.empty?
     char
   rescue

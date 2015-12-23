@@ -7,8 +7,7 @@ class CommandSuggestor
 
   def add(line)
     sl = ScriptLine.new(line)
-    return unless sl.valid?
-    wordtree.add(sl)
+    wordtree.add(sl) if sl.valid?
   end
 
   def truncate!(minimum)
@@ -20,9 +19,10 @@ class CommandSuggestor
   end
 
   def to_tree
+    alias_checker = AliasChecker.new "~/.aliases.cache"
     wordtree.root.map do |n|
-      cs = CommandSuggestion.new(n.word_list)
-      "#{n.to_tree.chomp} #{cs.to_s}"
-    end
+      cs = CommandSuggestion.new(n.word_list, alias_checker)
+      "#{n.to_tree.chomp} #{cs.to_s}" if cs.valid?
+    end.compact
   end
 end

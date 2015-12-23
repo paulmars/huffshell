@@ -1,8 +1,16 @@
 require 'spec_helper'
 
+class DummyAliasChecker < AliasChecker
+  def initialize
+    @aliases = {}
+  end
+end
+
 describe CommandSuggestion do
+  dummy_alias_checker = DummyAliasChecker.new
+
   before do
-    AliasChecker.stub(:new).and_return(nil)
+    AliasChecker.stub(:new).and_return(dummy_alias_checker)
   end
 
   it "create with list of words" do
