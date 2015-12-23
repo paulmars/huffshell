@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe AliasChecker do
+  shell = ENV["SHELL"]
+
   before(:each) do
     alias_file = <<-ZSHHISTORY
 ls='ls -G'
@@ -8,6 +10,11 @@ logs='nocorrect logs'
 mkdir='nocorrect mkdir'
 ZSHHISTORY
     File.stub!(:read).and_return(alias_file)
+    ENV["SHELL"] = "not bash/zsh"
+  end
+
+  after do
+    ENV["SHELL"] = shell
   end
 
   it "is inialized with a filename" do

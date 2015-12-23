@@ -32,7 +32,7 @@ class AliasChecker
       al, command = l.chomp.split("=", 2)
       next if command.nil?
       command = command[1..-2] if command.start_with? "'"
-      @aliases[al] = command
+      @aliases[al.sub(/^alias /, "")] = command
     end
   end
 end
