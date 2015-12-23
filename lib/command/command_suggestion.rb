@@ -3,10 +3,10 @@ class CommandSuggestion
 
   SHORT_ENOUGH = 3
 
-  def initialize(wordlist)
+  def initialize(wordlist, alias_checker=nil)
     @wordlist = wordlist
     @command = wordlist.join " "
-    @alias_checker = AliasChecker.new("~/.aliases.cache")
+    @alias_checker = alias_checker || AliasChecker.new("~/.aliases.cache")
   end
 
   def to_s

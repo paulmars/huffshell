@@ -19,8 +19,9 @@ class CommandSuggestor
   end
 
   def to_tree
+    alias_checker = AliasChecker.new "~/.aliases.cache"
     wordtree.root.map do |n|
-      cs = CommandSuggestion.new(n.word_list)
+      cs = CommandSuggestion.new(n.word_list, alias_checker)
       "#{n.to_tree.chomp} #{cs.to_s}" if cs.valid?
     end.compact
   end
