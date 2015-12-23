@@ -21,7 +21,6 @@ require 'command/command_word'
 require 'command/command_suggestor'
 require 'command/command_suggestion'
 
-require 'shell/alias_line'
 require 'shell/script_line'
 require 'shell/alias_checker'
 require 'shell/binary_checker'
